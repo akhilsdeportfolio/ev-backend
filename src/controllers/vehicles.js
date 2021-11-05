@@ -10,10 +10,10 @@ router.get("", async (req, res)=>{
     return res.status(200).send(news)
 })
 
-router.post("", upload.any('newsimage') , async (req, res)=>{
+router.post("", upload.any('images') , async (req, res)=>{
     const filePaths = req.files.map(file => file.path)
 
-    const news = await News.create({
+    const vehicle = await vehicle.create({
         title : req.body.title,
         text : req.body.text,
         tags : req.body.tags,

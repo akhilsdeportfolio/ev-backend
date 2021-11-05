@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const users = require('./users')
+// const users = require('./users')
 
 
-const newsSchema = new mongoose.Schema({
+const vehicleSchema = new mongoose.Schema({
     title : {type:String, required:true},
     price : {type:Number, required:true},
     key_specs : {type:Array, required:true},
@@ -15,4 +15,4 @@ const newsSchema = new mongoose.Schema({
     timestamps:true
 })
 
-module.exports = mongoose.model('news', newsSchema)
+module.exports = mongoose.model('news', vehicleSchema)
