@@ -2,8 +2,6 @@ const News = require('../models/news')
 const express = require('express')
 const router = express.Router();
 const upload = require('../middlewares/upload')
-const users = require('../models/users')
-// const fs = require('fs')
 
 router.get("", async (req, res)=>{
     const news = await News.find().populate({path : "user_id", select: 'name'})

@@ -15,4 +15,4 @@ const vehicleSchema = new mongoose.Schema({
     timestamps:true
 })
 
-module.exports = mongoose.model('news', vehicleSchema)
+module.exports = mongoose.model('vehicles', vehicleSchema)

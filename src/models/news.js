@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const users = require('./users')
+// const users = require('./users')
 
 
 const newsSchema = new mongoose.Schema({
