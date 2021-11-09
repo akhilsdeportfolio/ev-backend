@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 
 const vehicleSchema = new mongoose.Schema({
-    title : {type:String, required:true},
+    name : {type:String, required:true},
     price : {type:Number, required:true},
     key_specs : {type:Array, required:true},
     images : {type:Array, required:true},

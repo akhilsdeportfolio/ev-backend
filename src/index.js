@@ -12,4 +12,8 @@ const vehicleController = require('./controllers/vehicles')
 app.use('/vehicles', vehicleController)
 
 
+const reviewsController = require('./controllers/reviews')
+app.use('/reviews', reviewsController)
+
+
 module.exports = app;
