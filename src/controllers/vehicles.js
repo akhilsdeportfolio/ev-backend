@@ -1,10 +1,11 @@
-const Vehicles = require('../models/vehicles')
+const Vehicle = require('../models/vehicles')
+const Reviews = require('../models/reviews')
 const express = require('express')
 const router = express.Router();
 const upload = require('../middlewares/upload')
 
 router.get("", async (req, res)=>{
-    const vehicles = await Vehicle.find().populate({path : "user_id", select: 'name'})
+    const vehicles = await Vehicle.find()
     return res.status(200).send(vehicles)
 })
 
@@ -17,11 +18,16 @@ router.post("", upload.any('images') , async (req, res)=>{
         key_specs : req.body.key_specs,
         images : filePaths,
         features : req.body.features,
-        update : req.body.update
+        update : req.body.update,
+        tag : req.body.tag
     })
-
-
     return res.status(201).send(vehicles)
+})
+
+router.get("/:id/reviews", async (req, res)=>{
+    const reviews = await Reviews.find({vehicle_id: req.params.id}).lean().exec();
+    const vehicle = await Vehicle.findById(req.params.id)
+    return res.status(200).send({vehicle, reviews})
 })
 
 module.exports = router
