@@ -18,5 +18,4 @@ app.use('/reviews', reviewsController)
 const commentsController = require('./controllers/comments')
 app.use('/comments', commentsController)
 
-
 module.exports = app;

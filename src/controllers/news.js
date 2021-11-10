@@ -16,6 +16,7 @@ router.get("", async (req, res)=>{
     return res.status(200).send(news)
 })
 
+
 //News post
 router.post("", upload.any('newsimage') , async (req, res)=>{
     const filePaths = req.files.map(file => file.path)
@@ -24,6 +25,7 @@ router.post("", upload.any('newsimage') , async (req, res)=>{
         title : req.body.title,
         text : req.body.text,
         tags : req.body.tags,
+        likes : req.body.likes,
         images : filePaths,
         user_id : req.body.user_id
     })
@@ -32,6 +34,7 @@ router.post("", upload.any('newsimage') , async (req, res)=>{
 
 
 //get news and all comments on that news article
+
 router.get("/:id/comments", async(req, res)=>{
     const comments = await Comments.find({news_id: req.params.id}).lean().exec();
     const news = await News.findById(req.params.id)

@@ -12,7 +12,7 @@ router.get("", async (req, res)=>{
 router.post("", upload.any('images') , async (req, res)=>{
     const filePaths = req.files.map(file => file.path)
 
-    const vehicles = await Vehicles.create({
+    const vehicles = await Vehicle.create({
         name : req.body.name,
         price : req.body.price,
         key_specs : req.body.key_specs,
