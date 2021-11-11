@@ -1,5 +1,7 @@
 const Vehicle = require('../models/vehicles')
 const Reviews = require('../models/reviews')
+const Gallery = require('../models/gallery')
+
 const express = require('express')
 const router = express.Router();
 const upload = require('../middlewares/upload')
@@ -24,10 +26,19 @@ router.post("", upload.any('images') , async (req, res)=>{
     return res.status(201).send(vehicles)
 })
 
+//get all reviews on a vehicle
 router.get("/:id/reviews", async (req, res)=>{
     const reviews = await Reviews.find({vehicle_id: req.params.id}).lean().exec();
     const vehicle = await Vehicle.findById(req.params.id)
     return res.status(200).send({vehicle, reviews})
 })
+
+
+router.get("/:id/gallery", async (req, res)=>{
+    const gallery = await Gallery.find({vehicle_id: req.params.id}).lean().exec();
+    const vehicle = await Vehicle.findById(req.params.id)
+    return res.status(200).send({vehicle, gallery})
+})
+
 
 module.exports = router

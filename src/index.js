@@ -23,4 +23,7 @@ app.use('/reviews', reviewsController)
 const commentsController = require('./controllers/comments')
 app.use('/comments', commentsController)
 
+const galleryController = require('./controllers/gallery')
+app.use('/gallery', galleryController)
+
 module.exports = app;
