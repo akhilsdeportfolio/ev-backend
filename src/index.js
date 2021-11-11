@@ -26,4 +26,7 @@ app.use('/comments', commentsController)
 const galleryController = require('./controllers/gallery')
 app.use('/gallery', galleryController)
 
+const urgentController = require('./controllers/urgent')
+app.use('/urgent', urgentController)
+
 module.exports = app;
