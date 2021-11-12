@@ -16,17 +16,16 @@ router.get("", async (req, res)=>{
     return res.status(200).send(news)
 })
 
-
 //News post
-router.post("", upload.any('newsimage') , async (req, res)=>{
-    const filePaths = req.files.map(file => file.path)
+router.post("", async (req, res)=>{
+   // const filePaths = req.files.map(file => file.path)
 
     const news = await News.create({
         title : req.body.title,
         text : req.body.text,
         tags : req.body.tags,
         likes : req.body.likes,
-        images : filePaths,
+        images : req.body.images,
         user_id : req.body.user_id
     })
     return res.status(201).send(news)

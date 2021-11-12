@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 router.get("", async (req, res)=>{
-    const comments = await Comments.find().populate({path : "news_id", select: 'title'})
+    const comments = await Comments.find() //.populate({path : "news_id", select: 'title'})
     return res.status(200).send(comments)
 })
 

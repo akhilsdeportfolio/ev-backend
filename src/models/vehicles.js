@@ -10,6 +10,7 @@ const vehicleSchema = new mongoose.Schema({
     features : {type:Array, required:true},
     update : {type:String, required:true},
     tag : {type:String, required:true},
+    location : {type:String, required:true},
 },
 {
     versionKey:false,

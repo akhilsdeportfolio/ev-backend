@@ -4,12 +4,16 @@ const router = express.Router();
 const upload = require('../middlewares/upload')
 
 
-router.post("",  upload.any('images'), async(req, res)=>{
-    const filePaths = req.files.map(file => file.path)
+router.post("", async(req, res)=>{
+    //const filePaths = req.files.map(file => file.path)
 
     const gallery = await Gallery.create({
         vehicle_id : req.body.vehicle_id,
-        images: filePaths
+        exterior : req.body.exterior,
+        interior : req.body.interior,
+        color : req.body.color,
+        road_test : req.body.road_test,
+        videos : req.body.video
     })
 
     return res.status(201).send(gallery)
