@@ -1,6 +1,7 @@
 const User = require('../models/users')
 const Comments = require('../models/comments')
 const Reviews = require('../models/reviews')
+const Tickets = require('../models/tickets')
 
 const express = require('express')
 const router = express.Router();
@@ -12,7 +13,11 @@ const router = express.Router();
 // }
 
 router.post('', async (req, res)=>{
-    const user = await User.create(req.body)
+      user = await User.findOne({email:req.body.email})
+    
+     if(user) return res.status(400).send({message : 'User already registered with this email id'})
+
+      user = await User.create(req.body)
     return res.status(200).send(user)
 })
 
@@ -46,6 +51,14 @@ router.get('/reviews/:id', async (req, res)=>{
     //return res.status(200).send(user.email)
     const reviews = await Reviews.find({email : user.email}).lean().exec()
     return res.status(200).send(reviews)
+
+})
+
+router.get('/tickets/:id', async (req, res)=>{
+    const user = await User.findById(req.params.id)
+    //return res.status(200).send(user.email)
+    const tickets = await Tickets.find({email : user.email}).lean().exec()
+    return res.status(200).send(tickets)
 
 })
 

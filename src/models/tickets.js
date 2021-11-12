@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const urgentSchema = new mongoose.Schema({
+const ticketSchema = new mongoose.Schema({
     name : {type:String, required:true},
     phone : {type:Number, required:true},
     email : {type:String, required:true},
@@ -11,4 +11,4 @@ const urgentSchema = new mongoose.Schema({
     timestamps:true
 })
 
-module.exports = mongoose.model('urgent', urgentSchema)
+module.exports = mongoose.model('tickets', ticketSchema)

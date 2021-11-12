@@ -10,15 +10,19 @@ router.get("", async (req, res)=>{
     const vehicles = await Vehicle.find()
     return res.status(200).send(vehicles)
 })
+router.get("/:id", async (req, res)=>{
+    const vehicles = await Vehicle.findById(req.params.id)
+    return res.status(200).send(vehicles)
+})
 
 router.post("", upload.any('images') , async (req, res)=>{
-    const filePaths = req.files.map(file => file.path)
+    // const filePaths = req.files.map(file => file.path)
 
     const vehicles = await Vehicle.create({
         name : req.body.name,
         price : req.body.price,
         key_specs : req.body.key_specs,
-        images : filePaths,
+        images : req.body.images,
         features : req.body.features,
         update : req.body.update,
         tag : req.body.tag
