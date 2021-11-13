@@ -6,10 +6,20 @@ const express = require('express')
 const router = express.Router();
 const upload = require('../middlewares/upload')
 
+
 router.get("", async (req, res)=>{
     const vehicles = await Vehicle.find()
     return res.status(200).send(vehicles)
 })
+
+router.get("/tag/:id", async (req, res)=>{
+    if(req.params.id == 'all'){
+    vehicles = await Vehicle.find()
+    } else vehicles = await Vehicle.find({tag : req.params.id})
+
+    return res.status(200).send(vehicles)
+})
+
 router.get("/:id", async (req, res)=>{
     const reviews = await Reviews.find({vehicle_id: req.params.id}) //.lean().exec();
     let rating_sum = 0
@@ -26,6 +36,7 @@ router.get("/:id", async (req, res)=>{
     const vehicles = await Vehicle.findById(req.params.id)
     return res.status(200).send({vehicles, rating})
 })
+
 
 router.post("", upload.any('images') , async (req, res)=>{
     // const filePaths = req.files.map(file => file.path)
@@ -45,18 +56,11 @@ router.post("", upload.any('images') , async (req, res)=>{
 
 //get all reviews on a vehicle
 router.get("/:id/reviews", async (req, res)=>{
+
     const reviews = await Reviews.find({vehicle_id: req.params.id}).lean().exec();
     const vehicle = await Vehicle.findById(req.params.id)
     return res.status(200).send({vehicle, reviews})
 })
-
-
-router.get("/:id/comments", async (req, res)=>{
-    const comments = await Reviews.find({vehicle_id: req.params.id}).lean().exec();
-    const vehicle = await Vehicle.findById(req.params.id)
-    return res.status(200).send({vehicle, comments})
-})
-
 
 
 router.get("/:id/gallery", async (req, res)=>{

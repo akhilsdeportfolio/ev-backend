@@ -37,7 +37,6 @@ router.post('/login', async (req, res)=>{
     return res.status(200).send(user)
 })
 
-
 router.get('/comments/:id', async (req, res)=>{
     const user = await User.findById(req.params.id)
     //return res.status(200).send(user.email)
@@ -61,6 +60,5 @@ router.get('/tickets/:id', async (req, res)=>{
     return res.status(200).send(tickets)
 
 })
-
 
 module.exports = router
