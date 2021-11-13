@@ -47,9 +47,9 @@ router.get('/comments/:id', async (req, res)=>{
 
 router.get('/reviews/:id', async (req, res)=>{
     const user = await User.findById(req.params.id)
-    //return res.status(200).send(user.email)
+    // return res.status(200).send(user.email)
     const reviews = await Reviews.find({email : user.email}).lean().exec()
-    return res.status(200).send(reviews)
+    return res.status(200).send({reviews, user})
 
 })
 

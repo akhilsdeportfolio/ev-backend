@@ -7,12 +7,13 @@ const upload = require('../middlewares/upload')
 // const 
 
 router.get("", async (req, res)=>{
-    const news = await News.find().populate({path : "user_id", select: 'name'})
+    const news = await News.find().sort({"createdAt": -1}) //.populate({path : "user_id", select: 'name'})
+    
     return res.status(200).send(news)
 })
 
-router.get("", async (req, res)=>{
-    const news = await News.findById(req.body.id).populate({path : "user_id", select: 'name'})
+router.get("/:id", async (req, res)=>{
+    const news = await News.findById(req.params.id) //.populate({path : "user_id", select: 'name'})
     return res.status(200).send(news)
 })
 

@@ -4,8 +4,8 @@ var cors = require('cors')
 app.use(express.json())
 const path = require('path')
 app.use('/static', express.static(path.join(__dirname, '../uploads')))
-
 app. use(cors())
+
 
 const userController = require('./controllers/users')
 app.use('/users', userController)
